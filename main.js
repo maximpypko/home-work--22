@@ -11,31 +11,25 @@ function reverseString(string, result = '') {
 reverseString('Надо сделать домашку');
 
 ///////////////////////////////////////////////////
-
+/////////////////////0   1   2   3   4   5   6   7   8   9   10  11 12  13  14  15  16
 const arrNumbers = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q'];
 
 function getItem(arr, letter, start, end) {
-  arr = arr.slice(start, end)
-  start = 0;
-  
-  const indexMiddleElement = Math.floor(arr.length / 2);
-  
+  const indexMiddleElement = Math.ceil( (start + end) / 2);
+ 
   if (letter === arr[indexMiddleElement]) {
-    console.log(arr[indexMiddleElement]);
-    return
+    return indexMiddleElement;
+  }
+  else if (indexMiddleElement === start) {
+    return -1;
   }
   else if (letter < arr[indexMiddleElement]) {
-    arr = arr.slice(start, indexMiddleElement);
-    end = arr.length;
+    end = indexMiddleElement - 1;
   }
   else if (letter > arr[indexMiddleElement]) {
-    arr = arr.slice(indexMiddleElement + 1, end);
-    end = arr.length + 1;
-  } else {
-    console.log('Введите другой диапазон или другой символ');
-    return
-  }
-  return getItem(arr, letter, start, end)
+    start = indexMiddleElement;
+  } 
+  return getItem(arr, letter, start, end);
 }
 
-getItem(arrNumbers, 'n', 6, 13)
+console.log(getItem(arrNumbers, 'e', 2, 11));
